@@ -1,22 +1,22 @@
 import java.io.BufferedReader
 import java.io.InputStreamReader
-import java.util.*
+import java.util.LinkedList
 
 fun main() = with(BufferedReader(InputStreamReader(System.`in`))) {
-    val a = readLine().toInt()
-    for (i in 0 until a) {
-        val l = readLine()
+    val test = readLine().toInt()
+    repeat(test) {
+        val str = readLine().toString()
         val list = LinkedList<Char>()
         var cursor = 0
-        for (element in l) {
-            when (element) {
+        for (i in str) {
+            when (i) {
                 '<' -> {
                     if (cursor != 0) {
                         cursor--
                     }
                 }
                 '>' -> {
-                    if (cursor != list.size) {
+                    if (cursor < list.size) {
                         cursor++
                     }
                 }
@@ -26,7 +26,7 @@ fun main() = with(BufferedReader(InputStreamReader(System.`in`))) {
                     }
                 }
                 else -> {
-                    list.add(cursor++, element)
+                    list.add(cursor++, i)
                 }
             }
         }
