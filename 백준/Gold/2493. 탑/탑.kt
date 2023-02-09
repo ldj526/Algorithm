@@ -2,38 +2,26 @@ import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.util.*
 
-class Top {
-    var num: Int
-    var height: Int
-
-    constructor(num: Int, height: Int) {
-        this.num = num
-        this.height = height
-    }
-}
-
 fun main() = with(BufferedReader(InputStreamReader(System.`in`))) {
-    val sb = StringBuilder()
     val n = readLine().toInt()
     val st = StringTokenizer(readLine(), " ")
-
-    val stack = Stack<Top>()
-    for (i in 1..n) {
-        val height = st.nextToken().toInt()
-        if (stack.isEmpty()) {
+    val sb = StringBuilder()
+    val stack = Stack<Pair<Int, Int>>()
+    repeat(n) { idx ->
+        val num = st.nextToken().toInt()
+        if (stack.empty()) {
             sb.append("0 ")
-            stack.push(Top(i, height))
+            stack.push(Pair(idx, num))
         } else {
             while (true) {
-                if (stack.isEmpty()) {
+                if (stack.empty()) {
                     sb.append("0 ")
-                    stack.push(Top(i, height))
+                    stack.push(Pair(idx, num))
                     break
                 }
-                var top: Top = stack.peek()
-                if (top.height > height) {
-                    sb.append("${top.num} ")
-                    stack.push(Top(i, height))
+                if (stack.peek().second > num) {
+                    sb.append("${stack.peek().first + 1} ")
+                    stack.push(Pair(idx, num))
                     break
                 } else {
                     stack.pop()
@@ -41,5 +29,5 @@ fun main() = with(BufferedReader(InputStreamReader(System.`in`))) {
             }
         }
     }
-    println(sb.toString())
+    println(sb)
 }
