@@ -1,16 +1,28 @@
-import java.io.BufferedReader
-import java.io.InputStreamReader
-
 fun main() {
-    val br = BufferedReader(InputStreamReader(System.`in`))
+    val input = getInput()
+    solution(input).forEach {
+        println("${it.first} ${it.second}")
+    }
+}
+
+data class InputList(
+    val arr: ArrayList<Pair<Int, String>>
+)
+
+fun getInput(): InputList {
     val n = readln().toInt()
-    val arr = arrayListOf<Pair<Int, String>>()
-    for (i in 0 until n) {
-        val str = br.readLine().split(" ")
+    val arr = ArrayList<Pair<Int, String>>()
+    repeat(n) {
+        val str = readln().split(" ")
         arr.add(Pair(str[0].toInt(), str[1]))
     }
-    val sortedArr = arr.sortedWith(compareBy { it.first})
-    for (i in 0 until n) {
-        println("${sortedArr[i].first} ${sortedArr[i].second}")
-    }
+    return InputList(arr)
+}
+
+fun compare(arr: ArrayList<Pair<Int, String>>): List<Pair<Int, String>> {
+    return arr.sortedBy { it.first }
+}
+
+fun solution(input: InputList): List<Pair<Int, String>> {
+    return compare(input.arr)
 }
