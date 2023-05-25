@@ -3,10 +3,7 @@ class Solution {
         var answer: Int = 0
         
         for(i in 0 until t.length - p.length + 1) {
-            var tNum = ""
-            for(j in p.indices) {
-                tNum += t[i + j]
-            }
+            val tNum = t.substring(i, i + p.length)
             if(tNum.toDouble() <= p.toDouble()) {
                 answer++
             }
