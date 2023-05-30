@@ -4,14 +4,8 @@ class Solution {
         
         score.sortDescending()
         val cnt = score.size / m
-        for (i in 0 until cnt) {
-            var min = k + 1
-            for (j in 0 until m) {
-                if (min > score[i * m + j]) {
-                    min = score[i * m + j]
-                }
-            }
-            answer += min * m
+        for (i in 1 .. cnt) {
+            answer += score[i * m - 1] * m
         }
         return answer
     }
