@@ -10,20 +10,16 @@ fun main() = with(System.`in`.bufferedReader()) {
             0 -> {
                 if (st.isNotEmpty()) {
                     st.peek().remain--
-                    if (st.peek().remain == 0) {
-                        total += st.peek().score
-                        st.pop()
-                    }
                 }
             }
 
             1 -> {
                 st.push(Homework(input[1], input[2] - 1))
-                if (st.peek().remain == 0) {
-                    total += st.peek().score
-                    st.pop()
-                }
             }
+
+        }
+        if (st.isNotEmpty() && st.peek().remain == 0) {
+            total += st.pop().score
         }
     }
     print(total)
