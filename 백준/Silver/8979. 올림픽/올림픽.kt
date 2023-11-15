@@ -6,7 +6,7 @@ fun main() = with(System.`in`.bufferedReader()) {
         val list = readLine().split(' ').map { it.toInt() }
         countries.add(Country(list[0], list[1], list[2], list[3]))
     }
-    val sortedCountries = countries.sortedWith(compareBy({ it.gold }, { it.silver }, { it.bronze }))
+    val sortedCountries = countries.sortedWith(compareBy({ -it.gold }, { -it.silver }, { -it.bronze }))
     ans.add(Pair(0, sortedCountries[0].idx))
     for (i in 1 until countries.size) {
         if (sortedCountries[i - 1].gold == sortedCountries[i].gold && sortedCountries[i - 1].silver == sortedCountries[i].silver &&
