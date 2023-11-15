@@ -12,7 +12,7 @@ fun main() = with(System.`in`.bufferedReader()) {
         if (sortedCountries[i - 1].gold == sortedCountries[i].gold && sortedCountries[i - 1].silver == sortedCountries[i].silver &&
             sortedCountries[i - 1].bronze == sortedCountries[i].bronze
         ) {
-            ans.add(Pair(i - 1, sortedCountries[i].idx))
+            ans.add(Pair(ans[i - 1].first, sortedCountries[i].idx))
         } else ans.add(Pair(i, sortedCountries[i].idx))
     }
     for (i in 0 until n) {
