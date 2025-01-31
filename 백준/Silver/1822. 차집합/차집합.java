@@ -1,8 +1,10 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.StringTokenizer;
-import java.util.TreeSet;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -11,7 +13,7 @@ public class Main {
         int a = Integer.parseInt(st.nextToken());
         int b = Integer.parseInt(st.nextToken());
 
-        TreeSet<Integer> aSet = new TreeSet<>();
+        HashSet<Integer> aSet = new HashSet<>();
 
         st = new StringTokenizer(br.readLine());
         for (int i = 0; i < a; i++) {
@@ -23,11 +25,14 @@ public class Main {
             aSet.remove(Integer.parseInt(st.nextToken()));
         }
 
-        System.out.println(aSet.size());
+        ArrayList<Integer> sortedList = new ArrayList<>(aSet);
+        Collections.sort(sortedList);
+
+        System.out.println(sortedList.size());
 
         if (!aSet.isEmpty()) {
             StringBuilder sb = new StringBuilder();
-            for (int num : aSet) {
+            for (int num : sortedList) {
                 sb.append(num).append(" ");
             }
             System.out.print(sb.toString().trim());
